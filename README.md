@@ -52,10 +52,33 @@ sudo python3 init_vm_config.py --hostname unitvas-node1
 
 ## 📁 File Overview
 
-| File               | Description                                       |
-|--------------------|---------------------------------------------------|
-| `init_vm_config.py` | Main script for network and hostname configuration |
-| `README.md`         | This documentation file                          |
+| File                 | Description                                       |
+|----------------------|---------------------------------------------------|
+| `init_vm_config.py`   | Main script for network and hostname configuration |
+| `setup_tailscale.py` | Companion script for resetting and joining Tailscale |
+| `README.md`           | This documentation file                          |
+| `LICENSE`             | License file (MIT License)                       |
+| `.gitignore`          | Git ignore rules for Python and system files     |
+
+---
+
+## 🌐 Tailscale Integration
+
+For cloned VMs that need to join a private Tailscale network securely and automatically, use the companion script `setup_tailscale.py`.
+
+This script:
+
+- Resets any previous Tailscale identity (`/var/lib/tailscale`)
+- Re-authenticates using your own auth key (`tskey-xxxx...`)
+- Sets a custom Tailscale hostname
+
+### Example usage:
+```bash
+sudo python3 setup_tailscale.py --authkey tskey-abc123... --hostname unitvas-node2
+```
+
+> Ensure Tailscale is already installed on the VM.  
+> You can generate an auth key from your Tailscale admin console under **Settings → Keys**.
 
 ---
 
