@@ -8,8 +8,7 @@ def export_report_xml(report_id):
 
     with Gmp(connection) as gmp:
         gmp.authenticate('admin', 'your-password')
-
-        # ดึงรายการ format ทั้งหมด และหา ID ของ XML
+        
         formats = gmp.get_report_formats()
         xml_format_id = None
         for report_format in formats:
@@ -20,7 +19,6 @@ def export_report_xml(report_id):
         if not xml_format_id:
             raise Exception("XML format not found.")
 
-        # ดึง report แบบ XML
         response = gmp.get_report(
             report_id=report_id,
             report_format_id=xml_format_id,
@@ -38,5 +36,5 @@ def export_report_xml(report_id):
             "id": f"{report_id}.xml"
         })
 
-# ตัวอย่างเรียกใช้:
+# Example for run:
 # print(export_report_xml("12345678-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
